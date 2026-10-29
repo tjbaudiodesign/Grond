@@ -1,0 +1,8 @@
+build/
+dist/
+dep/
+*.dll
+*.o
+*.d
+private-fonts/
+RELEASING.md
