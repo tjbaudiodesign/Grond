@@ -1,3 +1,6 @@
+I've been using VCV as a tool for audio design in games for some time now. Felt like it was about time to get some interesting tools on the go. Built with assistance from Claude code, my C++ is still a bit shakey so bear with me 
+
+
 # Grond (VCV Rack 2)
 
 ![Grond in action](docs/grond.gif)
