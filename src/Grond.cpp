@@ -145,6 +145,10 @@ struct Grond : Module {
 	bool dopplerOnImpacts = false;
 	std::string lastDir;
 
+	// Expander link to Anvil (see GrondExpanderMessage in plugin.hpp)
+	bool wasWhooshPlaying = false;
+	uint32_t whooshStarts = 0, whooshEnds = 0;
+
 	Grond() {
 		config(NUM_PARAMS, NUM_INPUTS, NUM_OUTPUTS, 0);
 
@@ -547,6 +551,7 @@ struct Grond : Module {
 			fire(FIRE_IMPACT, sr);
 
 		float L = 0.f, R = 0.f;
+		int whooshVoices = 0;
 		for (int i = 0; i < NUM_VOICES; i++) {
 			Voice& v = voices[i];
 			if (!v.active)
@@ -555,6 +560,27 @@ struct Grond : Module {
 			if (renderVoice(v, sr, l, r)) {
 				L += l;
 				R += r;
+			}
+			if (v.active)
+				whooshVoices++;
+		}
+
+		// Tell an Anvil on our right when a fire starts and when everything it triggered has finished (end of cycle).
+		bool whooshPlaying = whooshVoices > 0;
+		if (whooshPlaying && !wasWhooshPlaying)
+			whooshStarts++;
+		else if (!whooshPlaying && wasWhooshPlaying)
+			whooshEnds++;
+		wasWhooshPlaying = whooshPlaying;
+		Module* right = rightExpander.module;
+		if (right && right->model && right->model->slug == "TJB_Anvil" && right->model->plugin && right->model->plugin->slug == "Anvil") {
+			// messages for the module on our right go into that module's own left-expander buffers
+			GrondExpanderMessage* msg = (GrondExpanderMessage*) right->leftExpander.producerMessage;
+			if (msg) {
+				msg->whooshPlaying = whooshPlaying;
+				msg->whooshStarts = whooshStarts;
+				msg->whooshEnds = whooshEnds;
+				right->leftExpander.requestMessageFlip();
 			}
 		}
 		L *= 5.f;
@@ -2084,4 +2110,4 @@ struct GrondWidget : ModuleWidget {
 };
 
 
-Model* modelGrond = createModel<Grond, GrondWidget>("TJB_Grond");
+Model* modelGrond = createModel<Grond, GrondWidget>("Grond");

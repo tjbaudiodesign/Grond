@@ -1,7 +1,7 @@
 {
-  "slug": "Grond",
-  "name": "Grond",
-  "version": "2.0.0",
+  "slug": "TJBAudio",
+  "name": "TJB Audio",
+  "version": "2.1.0",
   "license": "GPL-3.0-or-later",
   "brand": "TJB Audio",
   "author": "tjbaudiodesign",
@@ -11,7 +11,7 @@
   "changelogUrl": "https://github.com/tjbaudiodesign/Grond/blob/main/CHANGELOG.md",
   "modules": [
     {
-      "slug": "TJB_Grond",
+      "slug": "Grond",
       "name": "Grond",
       "description": "THE IMPACT FORGE - A layering environment for generating whooshes. Comes with built-in multiband (OTT), Doppler, Disseminator (Disperser), Distortion & Spectral Delay",
       "tags": [
