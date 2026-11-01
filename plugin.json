@@ -5,10 +5,10 @@
   "license": "GPL-3.0-or-later",
   "brand": "TJB Audio",
   "author": "tjbaudiodesign",
-  "pluginUrl": "https://github.com/tjbaudiodesign/Grond",
-  "manualUrl": "https://github.com/tjbaudiodesign/Grond#readme",
-  "sourceUrl": "https://github.com/tjbaudiodesign/Grond",
-  "changelogUrl": "https://github.com/tjbaudiodesign/Grond/blob/main/CHANGELOG.md",
+  "pluginUrl": "https://github.com/tjbaudiodesign/TJBAudio",
+  "manualUrl": "https://github.com/tjbaudiodesign/TJBAudio#readme",
+  "sourceUrl": "https://github.com/tjbaudiodesign/TJBAudio",
+  "changelogUrl": "https://github.com/tjbaudiodesign/TJBAudio/blob/main/CHANGELOG.md",
   "modules": [
     {
       "slug": "Grond",
